@@ -5,9 +5,33 @@
 🏗️ Repository Command Center
 
 
-├── 🤖 .github/workflows/        # Automated CI/CD testing & validation pipelines
-└── 📦 modules/                 # Heavy-duty, reusable Terraform modules
-    ├── 🌐 hub-vnet/            # Central network hub & core shared services
-    ├── 💻 spoke-vnet/          # Isolated workload virtual networks
-    ├── 🔥 azure-firewall/      # Next-gen traffic filtering & security
-    └── ⚡ peering/             # High-speed VNet peering links
+📦 terraform-azure-modules/
+├── 📁 modules/
+│   ├── 📁 hub-vnet/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── 📁 spoke-vnet/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── 📁 app-gateway/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── 📁 vpn-gateway/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── 📁 private-endpoint/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   └── 📁 linux-vm/
+│       ├── main.tf
+│       ├── variables.tf
+│       └── outputs.tf
+├── 📁 .github/
+│   └── 📁 workflows/
+│       └── release.yml
+└── README.md
