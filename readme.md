@@ -4,7 +4,7 @@
 
 🏗️ Repository Command Center
 
-.
+
 ├── 🤖 .github/workflows/        # Automated CI/CD testing & validation pipelines
 └── 📦 modules/                 # Heavy-duty, reusable Terraform modules
     ├── 🌐 hub-vnet/            # Central network hub & core shared services
