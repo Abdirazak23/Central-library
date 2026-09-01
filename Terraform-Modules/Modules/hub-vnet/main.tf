@@ -1,0 +1,41 @@
+resource "azurerm_resource_group" "hub-vnet-rg" {
+  name     = var.resource_group_name
+  location = var.location
+}
+
+resource "azurerm_virtual_network" "hub-vnet" {
+  name                = "vnet-${var.vnet_name}01"
+  address_space       = var.address_space
+  location            = azurerm_resource_group.hub-vnet-rg.location
+  resource_group_name = azurerm_resource_group.hub-vnet-rg.name
+}
+
+resource "azurerm_subnet" "gateway_subnet" {
+  name                 = "GW-${var.gateway_name}01"
+  resource_group_name  = azurerm_resource_group.hub-vnet-rg.name
+  virtual_network_name = azurerm_virtual_network.hub-vnet.name
+  address_prefixes     = [var.gateway_subnet_prefix]
+
+
+  delegation {
+    name = "delegation"
+
+    service_delegation {
+      name    = "Microsoft.gateway/service"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
+    }
+}
+
+resource "azurerm_subnet" "firewall_subnet" {
+  name                 = "AzureFirewallSubnet"
+  resource_group_name  = azurerm_resource_group.hub-vnet-rg.name
+  virtual_network_name = azurerm_virtual_network.hub-vnet.name
+  address_prefixes     = [var.firewall_subnet_prefix]
+}
+
+resource "azurerm_subnet" "management_subnet" {
+  name                 = "snet-management"
+  resource_group_name  = azurerm_resource_group.hub-vnet-rg.name
+  virtual_network_name = azurerm_virtual_network.hub-vnet.name
+  address_prefixes     = [var.management_subnet_prefix]
+}
