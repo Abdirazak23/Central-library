@@ -17,16 +17,6 @@ resource "azurerm_subnet" "gateway_subnet" {
   address_prefixes     = [var.gateway_subnet_prefix]
 }
 
-  delegation {
-    name = "delegation"
-
-    service_delegation {
-      name    = "Microsoft.gateway/service"
-      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
-    }
-}
-}
-
 resource "azurerm_subnet" "firewall_subnet" {
   name                 = "AzureFirewallSubnet"
   resource_group_name  = azurerm_resource_group.hub-vnet-rg.name
