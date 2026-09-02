@@ -29,16 +29,16 @@ variable "address_space" {
 }
 
 variable "gateway_subnet_prefix" {
-  type        = list(string)
+  type        = string
   description = "Address prefix for the GatewaySubnet."
 }
 
 variable "firewall_subnet_prefix" {
-  type        = list(string)
+  type        = string
   description = "Address prefix for the AzureFirewallSubnet."
 }
 
 variable "management_subnet_prefix" {
-  type        = list(string)
+  type        = string
   description = "Address prefix for the Management Subnet."
 }
