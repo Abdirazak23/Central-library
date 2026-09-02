@@ -24,7 +24,7 @@ variable "subnet_name" {
 }
 
 variable "address_space" {
-  type        = list(string)
+  type        = string
   description = "The address space for the Virtual Network."
 }
 
