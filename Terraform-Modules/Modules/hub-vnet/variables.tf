@@ -1,6 +1,6 @@
-variable "resource_group_name" {
+variable "hub_vnet_rg_name" {
   type        = string
-  description = "The name of the resource group for the hub network."
+  description = "vnet"
 }
 
 variable "location" {
@@ -25,20 +25,20 @@ variable "subnet_name" {
 
 variable "address_space" {
   type        = list(string)
-  description = "The address space for the hub virtual network."
+  value = ["10.0.0.0/16"]
 }
 
 variable "gateway_subnet_prefix" {
   type        = string
-  description = "The address prefix for the VPN/ExpressRoute gateway subnet."
-}
+  value = ["10.0.0.0/27"]
+  }
 
 variable "firewall_subnet_prefix" {
   type        = string
-  description = "The address prefix for the Azure Firewall subnet."
-}
+  value = ["10.0.0.32/27"]
+  }
 
 variable "management_subnet_prefix" {
   type        = string
-  description = "The address prefix for the management subnet."
+  value = ["10.0.0.64/27"]
 }

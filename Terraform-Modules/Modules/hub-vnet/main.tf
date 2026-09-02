@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "hub-vnet-rg" {
-  name     = var.resource_group_name
+  name     = "hub-${var.hub-vnet-rg}-rg01"
   location = var.location
 }
 
@@ -15,7 +15,7 @@ resource "azurerm_subnet" "gateway_subnet" {
   resource_group_name  = azurerm_resource_group.hub-vnet-rg.name
   virtual_network_name = azurerm_virtual_network.hub-vnet.name
   address_prefixes     = [var.gateway_subnet_prefix]
-
+}
 
   delegation {
     name = "delegation"
@@ -24,6 +24,7 @@ resource "azurerm_subnet" "gateway_subnet" {
       name    = "Microsoft.gateway/service"
       actions = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
     }
+}
 }
 
 resource "azurerm_subnet" "firewall_subnet" {

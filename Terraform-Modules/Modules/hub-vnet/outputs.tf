@@ -17,3 +17,8 @@ output "firewall_subnet_id" {
   value       = azurerm_subnet.firewall_subnet.id
   description = "The ID of the AzureFirewallSubnet."
 }
+
+output "management_subnet_id" {
+  value       = azurerm_subnet.management_subnet.id
+  description = "The ID of the management subnet."
+}
