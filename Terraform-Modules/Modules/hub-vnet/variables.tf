@@ -1,6 +1,6 @@
-variable "hub_vnet_rg_name" {
+variable "hub-vnet-rg" {
   type        = string
-  description = "The name of the Resource Group for the Hub VNet."
+  description = "Name component for the hub resource group"
 }
 
 variable "location" {
