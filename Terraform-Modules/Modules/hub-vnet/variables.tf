@@ -24,21 +24,21 @@ variable "subnet_name" {
 }
 
 variable "address_space" {
-  type        = string
+  type        = list(string)
   description = "The address space for the Virtual Network."
 }
 
 variable "gateway_subnet_prefix" {
-  type        = string
+  type        = list(string)
   description = "Address prefix for the GatewaySubnet."
 }
 
 variable "firewall_subnet_prefix" {
-  type        = string
+  type        = list(string)
   description = "Address prefix for the AzureFirewallSubnet."
 }
 
 variable "management_subnet_prefix" {
-  type        = string
+  type        = list(string)
   description = "Address prefix for the Management Subnet."
 }
