@@ -14,19 +14,19 @@ resource "azurerm_subnet" "gateway_subnet" {
   name                 = "GW-${var.gateway_name}01"
   resource_group_name  = azurerm_resource_group.hub-vnet-rg.name
   virtual_network_name = azurerm_virtual_network.hub-vnet.name
-  address_prefixes     = [var.gateway_subnet_prefix]
+  address_prefixes     = var.gateway_subnet_prefix
 }
 
 resource "azurerm_subnet" "firewall_subnet" {
   name                 = "AzureFirewallSubnet"
   resource_group_name  = azurerm_resource_group.hub-vnet-rg.name
   virtual_network_name = azurerm_virtual_network.hub-vnet.name
-  address_prefixes     = [var.firewall_subnet_prefix]
+  address_prefixes     = var.firewall_subnet_prefix
 }
 
 resource "azurerm_subnet" "management_subnet" {
   name                 = "snet-management"
   resource_group_name  = azurerm_resource_group.hub-vnet-rg.name
   virtual_network_name = azurerm_virtual_network.hub-vnet.name
-  address_prefixes     = [var.management_subnet_prefix]
+  address_prefixes     = var.management_subnet_prefix
 }
