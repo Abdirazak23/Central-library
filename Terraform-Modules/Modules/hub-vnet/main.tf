@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "hub-vnet-rg" {
 }
 
 resource "azurerm_virtual_network" "hub-vnet" {
-  name                = "vnet-${var.vnet_name}01"
+  name                = "hub-${var.vnet_name}01"
   address_space       = var.address_space
   location            = azurerm_resource_group.hub-vnet-rg.location
   resource_group_name = azurerm_resource_group.hub-vnet-rg.name
