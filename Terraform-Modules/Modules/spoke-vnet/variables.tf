@@ -8,12 +8,12 @@ variable "location" {
   description = "The Azure region where resources will be created."
 }
 
-variable "vnet_name" {
+variable "vnet_name_spoke" {
   type        = string
   description = "The name of the Virtual Network."
 }
 
-variable "address_space" {
+variable "address_space_spoke" {
   type        = list(string)
   description = "The address space for the Virtual Network."
 }
