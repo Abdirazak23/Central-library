@@ -1,0 +1,91 @@
+name: "Nightly Infrastructure Drift Detection"
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+  issues: write
+
+jobs:
+  detect-drift:
+    name: "Check Drift - ${{ matrix.environment }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        environment: [dev, pre, prd]
+
+    defaults:
+      run:
+        working-directory: environments/${{ matrix.environment }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Azure Login via OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.ARM_CLIENT_ID }}
+          tenant-id: ${{ secrets.ARM_TENANT_ID }}
+          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.0
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Check for Drift
+        id: drift
+        # -detailed-exitcode returns:
+        # 0 = No changes (Clean)
+        # 2 = Drift detected (Changes found)
+        # 1 = Error
+        run: |
+          set +e
+          terraform plan -detailed-exitcode -no-color -input=false > drift_output.txt
+          EXIT_CODE=$?
+          echo "exit_code=$EXIT_CODE" >> $GITHUB_OUTPUT
+          set -e
+
+      - name: Create GitHub Issue on Drift
+        if: steps.drift.outputs.exit_code == '2'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const planOutput = fs.readFileSync('environments/${{ matrix.environment }}/drift_output.txt', 'utf8');
+            
+            const title = `⚠️ Infrastructure Drift Detected in [${{ matrix.environment }}]`;
+            const body = `### Nightly Drift Detection Alert
+            
+            Infrastructure drift was detected between your Terraform configuration and the actual Azure resources in the **\`${{ matrix.environment }}\`** environment.
+
+            #### Terraform Plan Output:
+            \`\`\`hcl
+            ${planOutput.substring(0, 6000)}
+            \`\`\`
+
+            *Please reconcile these changes by updating the Terraform code or reverting out-of-band portal edits.*`;
+
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: body,
+              labels: ['drift-alert', 'bug']
+            });
+
+      - name: Fail Job If Drift Present
+        if: steps.drift.outputs.exit_code == '2'
+        run: |
+          echo "Drift detected in ${{ matrix.environment }}! Check GitHub Issues."
+          exit 1
