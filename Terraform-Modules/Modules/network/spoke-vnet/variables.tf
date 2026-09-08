@@ -37,3 +37,13 @@ variable "subnet02_name" {
   type        = string
   description = "The name of the Subnet."
 }
+
+variable "environment" {
+  type        = string
+  description = "The environment for the resources (e.g., dev, test, prod)."
+}
+
+variable "use_case" {
+  type        = string
+  description = "The use case for the resources (e.g., web, db, app)."
+}

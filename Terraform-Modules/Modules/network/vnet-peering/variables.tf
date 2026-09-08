@@ -27,3 +27,13 @@ variable "vnet_name_spoke_id" {
   type        = string
   description = "The resource ID of the Spoke Virtual Network."
 }
+
+variable "environment" {
+  type        = string
+  description = "The environment for the resources (e.g., dev, test, prod)."
+}
+
+variable "use_case" {
+  type        = string
+  description = "The use case for the resources (e.g., web, db, app)."
+}

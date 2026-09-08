@@ -1,10 +1,10 @@
 resource "azurerm_resource_group" "spoke-vnet-rg" {
-  name     = "spoke-${var.spoke-vnet-rg}-rg01"
+  name     = "${var.environment}-${var.use_case}-rg01"
   location = var.location
 }
 
 resource "azurerm_virtual_network" "vnet_name_spoke" {
-  name                = "spoke-${var.vnet_name_spoke}01"
+  name                = "${var.environment}-vm-${var.vm_usecase}-01"
   address_space       = var.address_space_spoke
   location            = azurerm_resource_group.spoke-vnet-rg.location
   resource_group_name = azurerm_resource_group.spoke-vnet-rg.name

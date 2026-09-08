@@ -51,3 +51,5 @@ Central-library/
             ├── main.tf
             ├── variables.tf
             └── outputs.tf
+
+[ENV]-[TYPE]-[USE CASE]-[NUM]
