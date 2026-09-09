@@ -26,3 +26,8 @@ variable "use_case" {
   type        = string
   description = "The use case for the resources (e.g., web, db, app)."
 }
+
+variable "admin_username" {
+  type        = string
+  description = "The admin username for the Linux VM."
+}
