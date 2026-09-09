@@ -18,22 +18,22 @@ variable "address_space_spoke" {
   description = "The address space for the Virtual Network."
 }
 
-variable "subnet01_prefix" {
+variable "Container-subnet_prefix" {
   type        = list(string)
   description = "Address prefix for the Subnet."
 }
 
-variable "subnet02_prefix" {
+variable "Data-subnet_prefix" {
   type        = list(string)
   description = "Address prefix for the Subnet."
 }
 
-variable "subnet01_name" {
+variable "Container-subnet" {
   type        = string
   description = "The name of the Subnet."
 }
 
-variable "subnet02_name" {
+variable "Data-subnet" {
   type        = string
   description = "The name of the Subnet."
 }
@@ -43,7 +43,11 @@ variable "environment" {
   description = "The environment for the resources (e.g., dev, test, prod)."
 }
 
-variable "use_case" {
+variable "use_case_hub" {
+  type        = string
+  description = "The use case for the resources (e.g., web, db, app)."
+}
+variable "use_case_subnet" {
   type        = string
   description = "The use case for the resources (e.g., web, db, app)."
 }
