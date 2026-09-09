@@ -4,28 +4,28 @@ resource "azurerm_resource_group" "hub-vnet-rg" {
 }
 
 resource "azurerm_virtual_network" "hub-vnet" {
-  name                = "${var.environment}-vnet-${var.vm_usecase}-01"
+  name                = "${var.environment}-vnet-${var.use_case_hub}-01"
   address_space       = var.address_space
   location            = azurerm_resource_group.hub-vnet-rg.location
   resource_group_name = azurerm_resource_group.hub-vnet-rg.name
 }
 
 resource "azurerm_subnet" "gateway_subnet" {
-  name                 = "GW-${var.gateway_name}01"
+  name                 = "${var.environment}-GW-${var.use_case_subnet}-01"
   resource_group_name  = azurerm_resource_group.hub-vnet-rg.name
   virtual_network_name = azurerm_virtual_network.hub-vnet.name
   address_prefixes     = var.gateway_subnet_prefix
 }
 
 resource "azurerm_subnet" "firewall_subnet" {
-  name                 = "AzureFirewallSubnet"
+  name                 = "${var.environment}-FW-${var.use_case_subnet}-01"
   resource_group_name  = azurerm_resource_group.hub-vnet-rg.name
   virtual_network_name = azurerm_virtual_network.hub-vnet.name
   address_prefixes     = var.firewall_subnet_prefix
 }
 
 resource "azurerm_subnet" "management_subnet" {
-  name                 = "snet-management"
+  name                 = "${var.environment}-MGMT-${var.use_case_subnet}-01"
   resource_group_name  = azurerm_resource_group.hub-vnet-rg.name
   virtual_network_name = azurerm_virtual_network.hub-vnet.name
   address_prefixes     = var.management_subnet_prefix
