@@ -23,11 +23,6 @@ variable "spoke-vnet-rg" {
   description = "The name of the Resource Group containing the Spoke VNet."
 }
 
-variable "hub_vnet_id" {
-  type        = string
-  description = "The resource ID of the Hub Virtual Network."
-}
-
 variable "spoke_vnet_id" {
   type        = string
   description = "The resource ID of the Spoke Virtual Network."
