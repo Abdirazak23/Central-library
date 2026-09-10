@@ -27,3 +27,9 @@ variable "admin_username" {
   description = "The admin username for the Linux VM."
   default     = "Test-User"
 }
+
+variable "vm_size" {
+  type        = string
+  description = "The size of the Linux VM."
+  default     = "Standard_B2s"
+}
