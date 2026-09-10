@@ -4,7 +4,7 @@ resource "azurestack_virtual_network_peering" "hub-to-spoke" {
   virtual_network_name         = azurestack_virtual_network.hub-vnet.name
   remote_virtual_network_id    = azurestack_virtual_network.vnet_name_spoke.id
   allow_virtual_network_access = true
-  allow_forwarded_traffic      = true # Allows traffic to other spokes
+  allow_forwarded_traffic      = true  # Allows traffic to other spokes
   use_remote_gateways          = false # Only set to true if Spoke should use Hub's gateway
 }
 
