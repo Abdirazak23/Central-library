@@ -44,3 +44,8 @@ variable "ssh_private_key" {
   description = "Private SSH key string used by remote-exec provisioner"
   sensitive   = true
 }
+
+variable "network_interface_name" {
+  type        = string
+  description = "The name of the network interface for the Linux VM."
+}
