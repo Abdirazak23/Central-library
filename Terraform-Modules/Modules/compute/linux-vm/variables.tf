@@ -33,3 +33,14 @@ variable "vm_size" {
   description = "The size of the Linux VM."
   default     = "Standard_B2s"
 }
+
+variable "ssh_public_key" {
+  type        = string
+  description = "Public SSH key string for VM authentication"
+}
+
+variable "ssh_private_key" {
+  type        = string
+  description = "Private SSH key string used by remote-exec provisioner"
+  sensitive   = true
+}
