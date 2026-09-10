@@ -1,8 +1,3 @@
-variable "hub-vnet-rg" {
-  type        = string
-  description = "Name component for the hub resource group"
-}
-
 variable "location" {
   type        = string
   description = "The Azure region where resources will be created."
