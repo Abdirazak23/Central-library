@@ -8,16 +8,6 @@ variable "vnet_name" {
   description = "The name of the Virtual Network."
 }
 
-variable "gateway_name" {
-  type        = string
-  description = "The name of the VPN/ExpressRoute Gateway."
-}
-
-variable "subnet_name" {
-  type        = string
-  description = "The name of the Subnet."
-}
-
 variable "address_space" {
   type        = list(string)
   description = "The address space for the Virtual Network."
@@ -47,6 +37,7 @@ variable "use_case_hub" {
   type        = string
   description = "The use case for the resources (e.g., web, db, app)."
 }
+
 variable "use_case_subnet" {
   type        = string
   description = "The use case for the resources (e.g., web, db, app)."
