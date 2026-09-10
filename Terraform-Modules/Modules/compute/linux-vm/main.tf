@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "linux-vm-rg" {
 }
 
 resource "azurerm_linux_virtual_machine" "linux-vm" {
-  name                  = "${var.environment}-vm-${var.use_case}-01"
+  name                  = "${var.environment}-vm-${var.use_case_vm}-01"
   location              = azurerm_resource_group.linux-vm-rg.location
   resource_group_name   = azurerm_resource_group.linux-vm-rg.name
   network_interface_ids = [azurerm_network_interface.linux-vm-nic.id]
