@@ -56,3 +56,8 @@ variable "use_case_subnet" {
   type        = string
   description = "The use case for the resources (e.g., web, db, app)."
 }
+
+variable "hub_rg_name" {
+  type        = string
+  description = "The name of the Resource Group containing the Hub VNet."
+}

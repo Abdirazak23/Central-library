@@ -8,6 +8,11 @@ variable "hub_rg_name" {
   description = "The name of the Resource Group containing the Hub VNet."
 }
 
+variable "spoke_rg_name" {
+  type        = string
+  description = "The name of the Resource Group containing the Spoke VNet."
+}
+
 variable "hub_vnet_id" {
   type        = string
   description = "The resource ID of the Hub Virtual Network."
