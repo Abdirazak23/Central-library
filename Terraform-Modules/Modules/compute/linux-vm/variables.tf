@@ -30,8 +30,5 @@ variable "use_case" {
 variable "admin_username" {
   type        = string
   description = "The admin username for the Linux VM."
-<<<<<<< HEAD
+  default     = "Test-User"
 }
-=======
-}
->>>>>>> a7333b90a3f47f70576f1f4c44b43c0efe1f65ad

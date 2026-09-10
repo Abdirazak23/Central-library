@@ -31,7 +31,6 @@ resource "azurerm_linux_virtual_machine" "linux-vm" {
   os_profile {
     computer_name  = local.virtual_machine_name
     admin_username = local.admin_username
-    admin_password = local.admin_password
   }
 
   admin_ssh_key {
@@ -40,16 +39,7 @@ resource "azurerm_linux_virtual_machine" "linux-vm" {
   }
 
   os_profile_linux_config {
-<<<<<<< HEAD
-    disable_password_authentication = true
-  }
-
-  admin_ssh_key {
-    username   = "var.admin_username"
-    public_key = var.ssh_public_key # e.g., "ssh-rsa AAAAB3NzaC1yc2EAAAADAQAB..."
-=======
     disable_password_Data-subnetcation = false
->>>>>>> a7333b90a3f47f70576f1f4c44b43c0efe1f65ad
   }
 
   provisioner "remote-exec" {
@@ -64,10 +54,10 @@ resource "azurerm_linux_virtual_machine" "linux-vm" {
     ]
   }
 }
- 
- resource "azurerm_ssh_public_key" "linux-vm-ssh-key" {
+
+resource "azurerm_ssh_public_key" "linux-vm-ssh-key" {
   name                = "LinuxVM-ssh-key"
   resource_group_name = azurerm_resource_group.linux-vm-rg.name
   location            = azurerm_resource_group.linux-vm-rg.location
   public_key          = var.ssh_public_key
- }
+}
