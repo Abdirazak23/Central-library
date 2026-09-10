@@ -42,3 +42,8 @@ variable "use_case" {
   type        = string
   description = "The use case for the resources (e.g., web, db, app)."
 }
+
+variable "spoke_vnet_name" {
+  type        = string
+  description = "The name of the Spoke Virtual Network."
+}
