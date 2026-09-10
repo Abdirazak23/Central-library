@@ -48,7 +48,11 @@ variable "environment" {
   description = "The environment for the resources (e.g., dev, test, prod)."
 }
 
-variable "use_case" {
+variable "use_case_hub" {
+  type        = string
+  description = "The use case for the resources (e.g., web, db, app)."
+}
+variable "use_case_subnet" {
   type        = string
   description = "The use case for the resources (e.g., web, db, app)."
 }

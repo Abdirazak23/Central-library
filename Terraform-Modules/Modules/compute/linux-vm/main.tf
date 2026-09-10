@@ -3,11 +3,13 @@ resource "azurerm_resource_group" "linux-vm-rg" {
   location = var.location
 }
 
-resource "azurerm_virtual_machine" "linux-vm" {
+resource "azurerm_linux_virtual_machine" "linux-vm" {
   name                  = "${var.environment}-vm-${var.use_case}-01"
   location              = azurerm_resource_group.linux-vm-rg.location
   resource_group_name   = azurerm_resource_group.linux-vm-rg.name
   network_interface_ids = [azurerm_network_interface.linux-vm-nic.id]
+  admin_username        = local.admin_username
+  computer_name         = local.virtual_machine_name
   vm_size               = "Standard_B2"
 
   delete_os_disk_on_termination = true
@@ -32,23 +34,40 @@ resource "azurerm_virtual_machine" "linux-vm" {
     admin_password = local.admin_password
   }
 
+  admin_ssh_key {
+    username   = local.admin_username
+    public_key = azurerm_ssh_public_key.linux-vm-ssh-key.public_key
+  }
+
   os_profile_linux_config {
+<<<<<<< HEAD
     disable_password_authentication = true
   }
 
   admin_ssh_key {
     username   = "var.admin_username"
     public_key = var.ssh_public_key # e.g., "ssh-rsa AAAAB3NzaC1yc2EAAAADAQAB..."
+=======
+    disable_password_Data-subnetcation = false
+>>>>>>> a7333b90a3f47f70576f1f4c44b43c0efe1f65ad
   }
 
   provisioner "remote-exec" {
     connection {
-      user     = local.admin_username
-      password = local.admin_password
+      type        = "ssh"
+      host        = azurerm_network_interface.linux-vm-nic.private_ip_address
+      user        = local.admin_username
+      private_key = var.ssh_private_key # Private key matching var.ssh_public_key
     }
-
     inline = [
       "ls -la",
     ]
   }
 }
+ 
+ resource "azurerm_ssh_public_key" "linux-vm-ssh-key" {
+  name                = "LinuxVM-ssh-key"
+  resource_group_name = azurerm_resource_group.linux-vm-rg.name
+  location            = azurerm_resource_group.linux-vm-rg.location
+  public_key          = var.ssh_public_key
+ }
