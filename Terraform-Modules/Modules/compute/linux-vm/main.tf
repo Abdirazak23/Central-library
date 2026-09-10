@@ -33,7 +33,12 @@ resource "azurerm_virtual_machine" "linux-vm" {
   }
 
   os_profile_linux_config {
-    disable_password_authentication = false
+    disable_password_authentication = true
+  }
+
+  admin_ssh_key {
+    username   = "var.admin_username"
+    public_key = var.ssh_public_key # e.g., "ssh-rsa AAAAB3NzaC1yc2EAAAADAQAB..."
   }
 
   provisioner "remote-exec" {
