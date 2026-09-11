@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "hub-vnet-rg" {
-  name     = "${var.environment}-${var.use_case}-rg01"
+  name     = "${var.environment}-${var.use_case_hub}-rg01"
   location = var.location
 }
 

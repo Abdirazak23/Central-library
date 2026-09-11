@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "spoke-vnet-rg" {
-  name     = "${var.environment}-${var.use_case}-rg01"
+  name     = "${var.environment}-${var.use_case_spoke}-rg01"
   location = var.location
 }
 

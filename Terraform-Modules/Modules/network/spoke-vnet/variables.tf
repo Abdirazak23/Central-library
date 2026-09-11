@@ -53,6 +53,8 @@ variable "use_case_subnet" {
   description = "The use case for the resources (e.g., web, db, app)."
 }
 
+
+
 variable "spoke_rg_name" {
   type        = string
   description = "The name of the Resource Group containing the Spoke VNet."
