@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "linux-vm-rg" {
-  name     = "${var.environment}-${var.use_case}-rg01"
+  name     = "${var.environment}-${var.use_case_vm}-rg01"
   location = var.location
 }
 
