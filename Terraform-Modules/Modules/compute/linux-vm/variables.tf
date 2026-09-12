@@ -1,5 +1,6 @@
 variable "prefix" {
-  description = "The Prefix used for all resources in this example"
+  type        = string
+  description = "The Prefix used for all resources"
 }
 
 variable "location" {
