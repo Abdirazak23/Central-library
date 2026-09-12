@@ -45,7 +45,7 @@ variable "ssh_private_key" {
   sensitive   = true
 }
 
-variable "network_interface_name" {
+variable "subnet_id" {
   type        = string
-  description = "The name of the network interface for the Linux VM."
+  description = "The ID of the subnet where the VM Network Interface will be created"
 }
